@@ -1,35 +1,68 @@
-<mxfile host="app.diagrams.net" modified="2020-10-20T03:27:15.978Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="lQodPB7bUC5E1zL7Hr3R" version="13.8.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-22T00:55:49.707Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="MbJcI5czFBTYcwhqTU2L" version="13.8.0" type="github">
   <diagram name="Page-1" id="c9db0220-8083-56f3-ca83-edcdcd058819">
-    <mxGraphModel dx="1303" dy="748" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1360" dy="685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" style=";html=1;" />
         <mxCell id="1" style=";html=1;" parent="0" />
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-2" value="Home/ Watched / Unwatched / Suggested" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-2" value="Home/ Movies / Series / Suggested" style="rounded=1;whiteSpace=wrap;html=1;align=left;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="160" y="130" width="960" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-4" value="Dashboard&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="160" y="220" width="970" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-6" value="By Rotten Tomatoes Rating&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="430" y="600" width="150" height="160" as="geometry" />
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-6" value="By Rotten Tomatoes Rating&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="420" y="520" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-7" value="Kid Friendly&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="950" y="600" width="150" height="160" as="geometry" />
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-7" value="Kid Friendly&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="930" y="520" width="185" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-9" value="On Deck:" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="160" y="520" width="970" height="60" as="geometry" />
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-10" value="Longest Queued" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="520" width="210" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-10" value="Longest Queued" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="700" y="600" width="150" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="OOubzRIT-5zcEC0w8VPz-11" value="IMDB Top 100&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="170" y="600" width="150" height="160" as="geometry" />
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-11" value="IMDB Top 100&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="180" y="520" width="200" height="200" as="geometry" />
         </mxCell>
         <mxCell id="OOubzRIT-5zcEC0w8VPz-12" value="Search Bar&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="740" y="150" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="OOubzRIT-5zcEC0w8VPz-13" value="Quick Add" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="980" y="150" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-16" value="First 10&amp;nbsp; - Next to watch list" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="234" width="240" height="226" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-17" value="Bootstrap Nav Bar" style="text;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="100" width="960" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-18" value="Metrics - total hours watched&amp;nbsp;" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="245" width="390" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-24" value="Bootstrap Cards&amp;nbsp;" style="text;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="520" y="500" width="250" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-25" value="HTML" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="475" y="210" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-26" value="Movies - Watched&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="200" y="797" width="433" height="433" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-27" value="Series - Watched&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1250" width="433" height="433" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-29" value="Movies - Unwatched" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="667" y="797" width="433" height="433" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-30" value="Series - Unwatched&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="667" y="1250" width="433" height="433" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-33" value="Suggested" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="873" y="240" width="240" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-34" value="HTML" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="475" y="760" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OOubzRIT-5zcEC0w8VPz-37" value="Buttons - Bootstrap" style="text;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="70" width="100" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
