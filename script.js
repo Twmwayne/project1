@@ -7,42 +7,51 @@ var unwatchedMovieLi = document.querySelector("#movie-uw-list");
 
 
 //TMDB  (images)
-var queryTMDB = "https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=77cf51e8d01e26a06a5030f3b856fe9e&language=en-US"
 //OMDB API
 
 // Perfoming an AJAX GET request to our queryURL
-searchButton.addEventListener("click", function(event){
-event.preventDefault();
-movieAdd = searchInput.value.trim();
-console.log(movieAdd);
-var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  movieAdd = searchInput.value.trim();
+  console.log(movieAdd);
+  var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
+  var queryTMDB = "https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=77cf51e8d01e26a06a5030f3b856fe9e&language=en-US"
 
 
-$.ajax({
-  url: queryOMDB,
-  method: "GET"
-})
-  .then(function (response){
-console.log(response); 
-var quickAdd = response.Type;
-console.log(quickAdd);
+  $.ajax({
+    url: queryOMDB,
+    method: "GET"
+  })
+    .then(function (responseOMDB) {
+      console.log(responseOMDB);
+      var quickAdd = responseOMDB.Type;
+      console.log(quickAdd);
 
-$.ajax({
-  url: queryOMDB,
-  method: "GET"
-})
+      if (quickAdd === "movie") {
+        var newMovie = document.createElement('li');
+        newMovie.setAttribute("class", "list-group-item");
+        newMovie.textContent = response.Title;
+        unwatchedMovieLi.appendChild(newMovie);
+        var
+      };
 
-    if(quickAdd === "movie") {
-      var newMovie = document.createElement('li');
-      newMovie.setAttribute("class", "list-group-item");
-      var moviePoster = document.createElement('img');
-      moviePoster.setAttribute("src", "")
-     newMovie.textContent = response.Title;
-     unwatchedMovieLi.appendChild(newMovie);
-     var 
-    }
+      $.ajax({
+        url: queryTMDB,
+        method: "GET"
+      });
+
+        .then(function (responseTMDB) {
+          console.log(responseTMDB);
+          var moviePosterDiv = document.createElement('col');
+          unwatchedMovieLi.appendChild(moviePosterDiv);
+          var moviePoster = document.createElement('img');
+          moviePoster.setAttribute("src", responseTMDB.poster_path);
+          moviePosterDiv.appendChild(moviePoster);
+        })
+
 });
-});
+
+
 //Event listener (quick add button)
 //Array for next ten list (with movie posters, use bootstrap carousel)
 // $('.carousel').carousel({
