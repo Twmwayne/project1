@@ -7,3 +7,12 @@ body {
     height: 400px;
     width: 1200px;
 }
+
+.card {
+    background:transparent;
+    color: darkgray;
+}
+
+.list-group-item {
+    background: transparent;
+}
