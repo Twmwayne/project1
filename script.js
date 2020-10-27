@@ -8,7 +8,7 @@ searchButton.addEventListener("click", function (event) {
   movieAdd = searchInput.value.trim();
   console.log(movieAdd);
   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
-  var queryTMDB = "https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=77cf51e8d01e26a06a5030f3b856fe9e&language=en-US"
+  var queryTMDB = "https://api.themoviedb.org/3/movie/" + movieAdd + "/images?api_key=77cf51e8d01e26a06a5030f3b856fe9e&language=en-US"
 
 // Perfoming an AJAX GET request to our queryURL
   $.ajax({
@@ -23,7 +23,7 @@ searchButton.addEventListener("click", function (event) {
       if (quickAdd === "movie") {
         var newMovie = document.createElement('li');
         newMovie.setAttribute("class", "list-group-item");
-        newMovie.textContent = response.Title;
+        newMovie.textContent = responseOMDB.Title;
         unwatchedMovieLi.appendChild(newMovie);
       }
 
