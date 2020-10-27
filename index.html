@@ -27,15 +27,35 @@
           <a class="nav-link" href="#">Series</a>
         </li>
       </ul>
-      <nav class="navbar navbar-dark bg-dark"> -->
-
+      <nav class="navbar navbar-dark bg-dark">
         <form class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Quick Add</button>
         </form>
       </nav>
     </div>
   </nav>
+        <div class="modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add a Movie or Series</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Here' we'll need to add elements to populate with movie search results or do them dynamically</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
 
   <div class="container pt-4" id="dashboard-cont">
     <div class="row justify-content-center border rounded-pill border-success" id="dashboard-row">
@@ -47,7 +67,7 @@
       </div>
     </div>
 
-    <div class="row" id="cards-row">
+    <!-- <div class="row" id="cards-row">
       <div class="card-group pt-3">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -106,11 +126,15 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="container border border-success">
     <div class="row">
-      <div class="col-xl-6 border" id="movies-unwatched"></div>
+      <div class="col-xl-6 border" id="movies-unwatched">
+        <ul class="list-group list-group-flush" id="movie-uw-list">
+      
+      </ul>
+    </div>
       <div class="col-xl-6" id="movies-watched"></div>
     </div>
   </div>
@@ -120,7 +144,8 @@
       <div class="col-xl-6" id="series-watched"></div>
     </div>
   </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src='./script.js'></script>
 
 </body>
 
