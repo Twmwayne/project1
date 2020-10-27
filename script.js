@@ -3,13 +3,6 @@ var searchInput = document.querySelector("#search-input");
 var unwatchedMovieLi = document.querySelector("#movie-uw-list");
 
 
-//Api call OMDB, IMDB
-
-
-//TMDB  (images)
-//OMDB API
-
-// Perfoming an AJAX GET request to our queryURL
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   movieAdd = searchInput.value.trim();
@@ -17,7 +10,7 @@ searchButton.addEventListener("click", function (event) {
   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=77cf51e8d01e26a06a5030f3b856fe9e&language=en-US"
 
-
+// Perfoming an AJAX GET request to our queryURL
   $.ajax({
     url: queryOMDB,
     method: "GET"
@@ -32,13 +25,12 @@ searchButton.addEventListener("click", function (event) {
         newMovie.setAttribute("class", "list-group-item");
         newMovie.textContent = response.Title;
         unwatchedMovieLi.appendChild(newMovie);
-        var
-      };
+      }
 
       $.ajax({
         url: queryTMDB,
         method: "GET"
-      });
+      })
 
         .then(function (responseTMDB) {
           console.log(responseTMDB);
@@ -49,6 +41,7 @@ searchButton.addEventListener("click", function (event) {
           moviePosterDiv.appendChild(moviePoster);
         })
 
+})
 });
 
 
