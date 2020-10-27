@@ -23,6 +23,7 @@ searchButton.addEventListener("click", function (event) {
 
       if (quickAdd === "movie") {
         var newMovie = document.createElement('row');
+        //no element called row - can assign a class of row - it would need to be in a table (do we want to create a table)
         // newMovie.setAttribute("class", "list-group-item");
         newMovie.setAttribute("id", "new-movie-row")
         newMovie.textContent = responseOMDB.Title;
@@ -38,15 +39,19 @@ searchButton.addEventListener("click", function (event) {
 
         .then(function (responseTMDB) {
           console.log(responseTMDB);
-          var moviePosterDiv = document.createElement('col');
-          newMovie.appendChild(moviePosterDiv);
-          var moviePoster = document.createElement('img');
-          var posterUrl = responseTMDB.results[0].poster_path;
+          $(".first-container").prepend(`
+          <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
+          `)
 
-          moviePoster.setAttribute("src", "https://image.tmdb.org/t/p/w200" + posterUrl);
-          console.log(responseTMDB.results[0].poster_path)
-          newMovie.appendChild(moviePosterDiv);
-          moviePosterDiv.appendChild(moviePoster);
+          // var moviePosterDiv = document.createElement('col');
+          // newMovie.appendChild(moviePosterDiv);
+          // var moviePoster = document.createElement('img');
+          // var posterUrl = responseTMDB.results[0].poster_path;
+
+          // moviePoster.setAttribute("src", "https://image.tmdb.org/t/p/w200" + posterUrl);
+          // console.log(responseTMDB.results[0].poster_path)
+          // newMovie.appendChild(moviePosterDiv);
+          // moviePosterDiv.appendChild(moviePoster);
         })
         // need to get the image to append to the row/ (want the img, Title, Rating, and Rotten Tomato Score)  
 
