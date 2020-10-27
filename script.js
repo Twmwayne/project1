@@ -10,6 +10,9 @@ $.ajax({
   method: "GET"
 //Event listener (quick add button)
 //Array for next ten list (with movie posters, use bootstrap carousel)
+// $('.carousel').carousel({
+//   interval: 2000
+// })
 //Dashboard list
 //Time watched clock. Convert to hours/days.
 //IMDB top 100
