@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+}
+#dashboard-row{
+    border-color: darkgreen !important;
+    border-width: 5px !important;
+    height: 400px;
+    width: 1200px;
+}
+
+.card {
+    background:transparent;
+    color: darkgray;
+}
+
+.list-group-item {
+    background: transparent;
+}
