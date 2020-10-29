@@ -65,32 +65,10 @@ searchButton.addEventListener("click", function (event) {
           rt_int = st1;
         }
 
-        var movieDiv = $("<div class='movie'>");
+        // var movieDiv = $("<div class='movie'>");
 
         // Putting the entire movie above the previous movies
-        $("#movies").prepend(movieDiv);
-
-        // names.push(title);
-        runtimes.push(rt_int);
-        addToWatched(cntr);
-
-      }
-
-      if (quickAdd === "movie") {
-        var tm = responseOMDB.Runtime;
-        var st1 = tm;
-        var rt_int = 0;
-
-        var pos = st1.indexOf(" ");
-        if (pos > -1) {
-          st1 = st1.substr(0, pos);
-          rt_int = st1;
-        }
-
-        var movieDiv = $("<div class='movie'>");
-
-        // Putting the entire movie above the previous movies
-        $("#movies").prepend(movieDiv);
+        // $("#movies").prepend(movieDiv);
 
         // names.push(title);
         runtimes.push(rt_int);
@@ -107,12 +85,47 @@ searchButton.addEventListener("click", function (event) {
               <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
               `)
           })
+          runtimes.push(rt_int);
+          addToWatched(cntr);
+
       }
 
+      if (quickAdd === "series") {
+        var tm = responseOMDB.Runtime;
+        var st1 = tm;
+        var rt_int = 0;
 
-      // we need to add IF statement for Series 
+        var pos = st1.indexOf(" ");
+        if (pos > -1) {
+          st1 = st1.substr(0, pos);
+          rt_int = st1;
 
+          $.ajax({
+            url: queryTMDB,
+            method: "GET"
+          })
+  
+            .then(function (responseTMDB) {
+              console.log(responseTMDB);
+              $(".second-container").prepend(`
+                <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
+                `)
+            })
 
+            runtimes.push(rt_int);
+           addToWatched(cntr);
+        }
+
+        // var movieDiv = $("<div class='series'>");
+
+        // Putting the entire movie above the previous movies
+        // $("#series").prepend(movieDiv);
+
+        // names.push(title);
+        
+
+        
+      }
     })
 });
 
