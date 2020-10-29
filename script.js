@@ -45,12 +45,12 @@ searchButton.addEventListener("click", function (event) {
   console.log(movieAdd);
   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/search/multi?api_key=" + apiKey + "&language=en-US&query=" + movieAdd + "&include_adult=false"
+  addToWatched(" " + cntr + " ");
 
 
 
 
-
-  // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+  
 
   // Perfoming an AJAX GET request to our queryURL
   $.ajax({
@@ -64,10 +64,10 @@ searchButton.addEventListener("click", function (event) {
       if (quickAdd === "movie") {
         //var newMovie = document.createElement('row');
         var tm = responseOMDB.Runtime;
-        var st1 = "test"
+        var st1 = tm;
         var rt_int = 0;
 
-        st1 = tm;
+        
         var pos = st1.indexOf(" ");
 
         if (pos > -1) {
