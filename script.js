@@ -25,17 +25,15 @@ function addToWatched(index) {
 
   if (runningTotal.indexOf(title) == -1) {
     var tm = runtimes[index];
-    var isrt = "<label>" + title + "</label>"
     var movieDiv = $("<div class='movie'>");
     var totalStr;
 
-    movieDiv.append(isrt);
     $("#movies").prepend(movieDiv);
     runningTotal.push(title);
     timeTotal += tm;
     totalStr = timeConvert(timeTotal);
     document.getElementById("time-watched-graphic").innerHTML = totalStr;
-
+    cntr++;
   }
 }
 
@@ -45,65 +43,76 @@ searchButton.addEventListener("click", function (event) {
   console.log(movieAdd);
   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/search/multi?api_key=" + apiKey + "&language=en-US&query=" + movieAdd + "&include_adult=false"
-  addToWatched(" " + cntr + " ");
-
-
-
-
-  
 
   // Perfoming an AJAX GET request to our queryURL
   $.ajax({
     url: queryOMDB,
     method: "GET"
+
   })
     .then(function (responseOMDB) {
       console.log(responseOMDB);
       var quickAdd = responseOMDB.Type;
 
       if (quickAdd === "movie") {
-        //var newMovie = document.createElement('row');
         var tm = responseOMDB.Runtime;
         var st1 = tm;
         var rt_int = 0;
 
-        
         var pos = st1.indexOf(" ");
-
         if (pos > -1) {
           st1 = st1.substr(0, pos);
-          rt_int = parseInt(st1);
+          rt_int = st1;
         }
 
         var movieDiv = $("<div class='movie'>");
-
-        //button on movies unwatched to add to movies watched
-
-        // var title = responseOMDB.Title;
-        // var isrt = "<label>" + title + "</label> <input type='button' value='add to watched' onclick='addToWatched(" + cntr + ")'/>"
-        // movieDiv.append(isrt);
 
         // Putting the entire movie above the previous movies
         $("#movies").prepend(movieDiv);
 
         // names.push(title);
         runtimes.push(rt_int);
-        cntr++;
+        addToWatched(cntr);
+
       }
+
+      if (quickAdd === "movie") {
+        var tm = responseOMDB.Runtime;
+        var st1 = tm;
+        var rt_int = 0;
+
+        var pos = st1.indexOf(" ");
+        if (pos > -1) {
+          st1 = st1.substr(0, pos);
+          rt_int = st1;
+        }
+
+        var movieDiv = $("<div class='movie'>");
+
+        // Putting the entire movie above the previous movies
+        $("#movies").prepend(movieDiv);
+
+        // names.push(title);
+        runtimes.push(rt_int);
+        addToWatched(cntr);
+
+        $.ajax({
+          url: queryTMDB,
+          method: "GET"
+        })
+
+          .then(function (responseTMDB) {
+            console.log(responseTMDB);
+            $(".first-container").prepend(`
+              <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
+              `)
+          })
+      }
+
 
       // we need to add IF statement for Series 
 
-      $.ajax({
-        url: queryTMDB,
-        method: "GET"
-      })
 
-        .then(function (responseTMDB) {
-          console.log(responseTMDB);
-          $(".first-container").prepend(`
-          <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
-          `)
-        })
     })
 });
 
