@@ -6,7 +6,7 @@ var apiKey = "77cf51e8d01e26a06a5030f3b856fe9e"
 //global variables to make arrays from movies chosen
 var cntr = 0
 var names = new Array();
-var runtimes = new Array();
+// var runtimes = new Array();
 var runningTotal = new Array();
 var timeTotal = 0;
 
@@ -20,25 +20,35 @@ function timeConvert(n) {
   return rhours.toString() + " hour(s) and " + rminutes.toString() + " minute(s).";
 }
 
-function addToWatched(index) {
-  var title = names[index];
-  console.log(title);
+function incrementTotal(inp_time)
+{
+  var totalStr;
 
-  if (runningTotal.indexOf(title) == -1) {
-    var tm = runtimes[index];
-    console.log(tm);
+  timeTotal += inp_time;
+
+  totalStr = timeConvert(timeTotal);
+  document.getElementById("time-watched-graphic").innerHTML = totalStr;
+}
+
+// function addToWatched(index) {
+//   var title = names[index];
+//   console.log(title);
+
+//   if (runningTotal.indexOf(title) == -1) {
+    // var tm = runtimes[index];
+    // console.log(tm);
     // var movieDiv = $("<div class='movie'>");
-    var totalStr;
+    // var totalStr;
 
     // $("#movies").prepend(movieDiv);
-    runningTotal.push(title);
-    timeTotal += tm;
-    console.log(timeTotal)
-    totalStr = timeConvert(timeTotal);
-    document.getElementById("time-watched-graphic").innerHTML = totalStr;
-    cntr++;
-  }
-}
+  //   runningTotal.push(title);
+  //   timeTotal += tm;
+  //   console.log(timeTotal)
+  //   totalStr = timeConvert(timeTotal);
+  //   document.getElementById("time-watched-graphic").innerHTML = totalStr;
+  //   cntr++;
+  // }
+//}
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -55,16 +65,20 @@ searchButton.addEventListener("click", function (event) {
     .then(function (responseOMDB) {
       var quickAdd = responseOMDB.Type;
       var tm = responseOMDB.Runtime;
-      var st1 = tm;
+      var st1 = "test";
       var rt_int = 0;
       names.push(responseOMDB.Title)
 
+      st1 = tm;
       var pos = st1.indexOf(" ");
-      console.log(tm)
+
       if (pos > -1) {
         st1 = st1.substr(0, pos);
-        rt_int = st1;
+        rt_int = parseInt(st1);
       }
+
+      incrementTotal(rt_int);
+
       if (quickAdd === "movie") {
 
         $.ajax({
@@ -93,10 +107,10 @@ searchButton.addEventListener("click", function (event) {
           })
 
       }
-      runtimes.push(rt_int);
-      console.log(rt_int);
-      console.log("bottom counter" + cntr)
-      addToWatched(cntr);
+      // runtimes.push(rt_int);
+      //console.log(rt_int);
+      //console.log("bottom counter" + cntr)
+      //addToWatched(cntr);
     })
 });
 
