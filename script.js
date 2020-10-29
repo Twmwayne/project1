@@ -33,9 +33,9 @@ function addToWatched(index) {
     // $("#movies").prepend(movieDiv);
     runningTotal.push(title);
     timeTotal += tm;
+    console.log(timeTotal)
     totalStr = timeConvert(timeTotal);
     document.getElementById("time-watched-graphic").innerHTML = totalStr;
-    console.log(totalStr);
     cntr++;
   }
 }
@@ -43,7 +43,7 @@ function addToWatched(index) {
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   movieAdd = searchInput.value.trim();
-   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
+  var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/search/multi?api_key=" + apiKey + "&language=en-US&query=" + movieAdd + "&include_adult=false"
 
   // Perfoming an AJAX GET request to our queryURL
@@ -53,18 +53,20 @@ searchButton.addEventListener("click", function (event) {
 
   })
     .then(function (responseOMDB) {
-            var quickAdd = responseOMDB.Type;
-            var tm = responseOMDB.Runtime;
-            var st1 = tm;
-            var rt_int = 0;
-    
-            var pos = st1.indexOf(" ");
-            if (pos > -1) {
-              st1 = st1.substr(0, pos);
-              rt_int = st1;
-            }
+      var quickAdd = responseOMDB.Type;
+      var tm = responseOMDB.Runtime;
+      var st1 = tm;
+      var rt_int = 0;
+      names.push(responseOMDB.Title)
+
+      var pos = st1.indexOf(" ");
+      console.log(tm)
+      if (pos > -1) {
+        st1 = st1.substr(0, pos);
+        rt_int = st1;
+      }
       if (quickAdd === "movie") {
- 
+
         $.ajax({
           url: queryTMDB,
           method: "GET"
@@ -75,29 +77,26 @@ searchButton.addEventListener("click", function (event) {
               <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
               `)
           })
-          // runtimes.push(rt_int);
-          // addToWatched(cntr);
-
       }
 
       if (quickAdd === "series") {
 
-          $.ajax({
-            url: queryTMDB,
-            method: "GET"
-          })
-  
-            .then(function (responseTMDB) {
-              $(".second-container").prepend(`
+        $.ajax({
+          url: queryTMDB,
+          method: "GET"
+        })
+
+          .then(function (responseTMDB) {
+            $(".second-container").prepend(`
                 <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
                 `)
-            })
- 
-      }
+          })
 
+      }
       runtimes.push(rt_int);
-          console.log(rt_int);
-         addToWatched(cntr);
+      console.log(rt_int);
+      console.log("bottom counter" + cntr)
+      addToWatched(cntr);
     })
 });
 
