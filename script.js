@@ -1,6 +1,6 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.querySelector("#search-input");
-var unwatchedMovie = document.querySelector("#movies-unwatched");
+var unwatchedMovie = document.querySelector("#movies");
 var apiKey = "77cf51e8d01e26a06a5030f3b856fe9e"
 
 //global variables to make arrays from movies chosen
@@ -18,12 +18,11 @@ function timeConvert(n) {
   var minutes = (hours - rhours) * 60;
   var rminutes = Math.round(minutes);
   return rhours.toString() + " hour(s) and " + rminutes.toString() + " minute(s).";
-  }
+}
 
 function addToWatched(index) {
   var title = names[index];
 
-//
   if (runningTotal.indexOf(title) == -1) {
     var tm = runtimes[index];
     var isrt = "<label>" + title + "</label>"
@@ -31,16 +30,14 @@ function addToWatched(index) {
     var totalStr;
 
     movieDiv.append(isrt);
-    $("#movies-watched").prepend(movieDiv);
+    $("#movies").prepend(movieDiv);
     runningTotal.push(title);
     timeTotal += tm;
     totalStr = timeConvert(timeTotal);
     document.getElementById("time-watched-graphic").innerHTML = totalStr;
 
   }
-
 }
-
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -77,28 +74,19 @@ searchButton.addEventListener("click", function (event) {
           st1 = st1.substr(0, pos);
           rt_int = parseInt(st1);
         }
-        
-        //alert(tm);
-        var newMovie = document.createElement('row');
-        //no element called row - can assign a class of row - it would need to be in a table (do we want to create a table)
-        // newMovie.setAttribute("class", "list-group-item");
-        // newMovie.setAttribute("id", "new-movie-row")
-        // newMovie.Runtime = responseOMDB.Runtime;
-        // newMovie.textContent = responseOMDB.Title;
-        // unwatchedMovie.appendChild(newMovie);
 
         var movieDiv = $("<div class='movie'>");
 
         //button on movies unwatched to add to movies watched
 
-        var title = responseOMDB.Title;
-        var isrt = "<label>" + title + "</label> <input type='button' value='add to watched' onclick='addToWatched(" + cntr + ")'/>"
-        movieDiv.append(isrt);
+        // var title = responseOMDB.Title;
+        // var isrt = "<label>" + title + "</label> <input type='button' value='add to watched' onclick='addToWatched(" + cntr + ")'/>"
+        // movieDiv.append(isrt);
 
         // Putting the entire movie above the previous movies
-        $("#movies-unwatched").prepend(movieDiv);
+        $("#movies").prepend(movieDiv);
 
-        names.push(title);
+        // names.push(title);
         runtimes.push(rt_int);
         cntr++;
       }
@@ -115,19 +103,7 @@ searchButton.addEventListener("click", function (event) {
           $(".first-container").prepend(`
           <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
           `)
-
-          // var moviePosterDiv = document.createElement('col');
-          // newMovie.appendChild(moviePosterDiv);
-          // var moviePoster = document.createElement('img');
-          // var posterUrl = responseTMDB.results[0].poster_path;
-
-          // moviePoster.setAttribute("src", "https://image.tmdb.org/t/p/w200" + posterUrl);
-          // console.log(responseTMDB.results[0].poster_path)
-          // newMovie.appendChild(moviePosterDiv);
-          // moviePosterDiv.appendChild(moviePoster);
         })
-      // need to get the image to append to the row/ (want the img, Title, Rating, and Rotten Tomato Score)  
-
     })
 });
 
@@ -138,27 +114,6 @@ searchButton.addEventListener("click", function (event) {
 // })
 //Dashboard list
 //Time watched clock. Convert to hours/days.
-
-// Number.prototype.padDigit = function () {
-//   return (this < 10) ? '0' + this : this;
-// }
-
-// $("#addTimes").on('click', function () {
-// var t1 = "00:00";
-// var mins = 0;
-// var hrs = 0;
-//   $('input').each(function () {
-//       t1 = t1.split(':');
-//       var t2 = $(this).val().split(':');
-//       mins = Number(t1[1]) + Number(t2[1]);
-//       minhrs = Math.floor(parseInt(mins / 60));
-//       hrs = Number(t1[0]) + Number(t2[0]) + minhrs;
-//       mins = mins % 60;
-//       t1 = hrs.padDigit() + ':' + mins.padDigit()
-
-//   });
-//   $('#timeSum').text(t1);
-// });
 
 //IMDB top 100
 //Rotten tomatoes (OMDB)

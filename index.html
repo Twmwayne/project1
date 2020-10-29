@@ -34,28 +34,7 @@
         </form>
       </nav>
     </div>
-  </nav>
-        <div class="modal" tabindex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Add a Movie or Series</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Here' we'll need to add elements to populate with movie search results or do them dynamically</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
+  </nav>  
 
   <div class="container pt-4" id="dashboard-cont">
     <div class="row justify-content-center border rounded-pill border-success" id="dashboard-row">
@@ -64,6 +43,14 @@
       <div class="col-6 border-0" id="time-watched-graphic">
       </div>
       <div class="col-3 border-0" id="suggested-list">
+      </div>
+    </div>
+    
+    <div class="container border border-success">
+      <div class="row">
+        <div class="col-xl-6 border first-container" id="movies">
+        </div>
+        <div class="col-xl-6" id="series"></div>
       </div>
     </div>
 
@@ -127,20 +114,37 @@
         </div>
       </div>
     </div> -->
+
   </div>
-  <div class="container border border-success">
-    <div class="row">
-      <div class="col-xl-6 border first-container" id="movies-unwatched">
-      </div>
-      <div class="col-xl-6" id="movies-watched"></div>
-    </div>
-  </div>
+  
+
   <div class="container border border-success">
     <div class="row">
       <div class="col-xl-6" id="series-unwatched"></div>
       <div class="col-xl-6" id="series-watched"></div>
     </div>
   </div>
+
+  <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a Movie or Series</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Here' we'll need to add elements to populate with movie search results or do them dynamically</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src='script.js'></script>
 
