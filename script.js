@@ -17,7 +17,7 @@ function timeConvert(n) {
   var rhours = Math.floor(hours);
   var minutes = (hours - rhours) * 60;
   var rminutes = Math.round(minutes);
-  return rhours.toString() + " hour(s) and " + rminutes.toString() + " minute(s).";
+  return rhours.toString() + " hr(s) " + rminutes.toString() + " min(s)";
 }
 
 function addToWatched(index) {
