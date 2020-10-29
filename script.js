@@ -22,17 +22,20 @@ function timeConvert(n) {
 
 function addToWatched(index) {
   var title = names[index];
+  console.log(title);
 
   if (runningTotal.indexOf(title) == -1) {
     var tm = runtimes[index];
-    var movieDiv = $("<div class='movie'>");
+    console.log(tm);
+    // var movieDiv = $("<div class='movie'>");
     var totalStr;
 
-    $("#movies").prepend(movieDiv);
+    // $("#movies").prepend(movieDiv);
     runningTotal.push(title);
     timeTotal += tm;
     totalStr = timeConvert(timeTotal);
     document.getElementById("time-watched-graphic").innerHTML = totalStr;
+    console.log(totalStr);
     cntr++;
   }
 }
@@ -40,8 +43,7 @@ function addToWatched(index) {
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   movieAdd = searchInput.value.trim();
-  console.log(movieAdd);
-  var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
+   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/search/multi?api_key=" + apiKey + "&language=en-US&query=" + movieAdd + "&include_adult=false"
 
   // Perfoming an AJAX GET request to our queryURL
@@ -51,54 +53,34 @@ searchButton.addEventListener("click", function (event) {
 
   })
     .then(function (responseOMDB) {
-      console.log(responseOMDB);
-      var quickAdd = responseOMDB.Type;
-
+            var quickAdd = responseOMDB.Type;
+            var tm = responseOMDB.Runtime;
+            var st1 = tm;
+            var rt_int = 0;
+    
+            var pos = st1.indexOf(" ");
+            if (pos > -1) {
+              st1 = st1.substr(0, pos);
+              rt_int = st1;
+            }
       if (quickAdd === "movie") {
-        var tm = responseOMDB.Runtime;
-        var st1 = tm;
-        var rt_int = 0;
-
-        var pos = st1.indexOf(" ");
-        if (pos > -1) {
-          st1 = st1.substr(0, pos);
-          rt_int = st1;
-        }
-
-        // var movieDiv = $("<div class='movie'>");
-
-        // Putting the entire movie above the previous movies
-        // $("#movies").prepend(movieDiv);
-
-        // names.push(title);
-        runtimes.push(rt_int);
-        addToWatched(cntr);
-
+ 
         $.ajax({
           url: queryTMDB,
           method: "GET"
         })
 
           .then(function (responseTMDB) {
-            console.log(responseTMDB);
             $(".first-container").prepend(`
               <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
               `)
           })
-          runtimes.push(rt_int);
-          addToWatched(cntr);
+          // runtimes.push(rt_int);
+          // addToWatched(cntr);
 
       }
 
       if (quickAdd === "series") {
-        var tm = responseOMDB.Runtime;
-        var st1 = tm;
-        var rt_int = 0;
-
-        var pos = st1.indexOf(" ");
-        if (pos > -1) {
-          st1 = st1.substr(0, pos);
-          rt_int = st1;
 
           $.ajax({
             url: queryTMDB,
@@ -106,26 +88,16 @@ searchButton.addEventListener("click", function (event) {
           })
   
             .then(function (responseTMDB) {
-              console.log(responseTMDB);
               $(".second-container").prepend(`
                 <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
                 `)
             })
-
-            runtimes.push(rt_int);
-           addToWatched(cntr);
-        }
-
-        // var movieDiv = $("<div class='series'>");
-
-        // Putting the entire movie above the previous movies
-        // $("#series").prepend(movieDiv);
-
-        // names.push(title);
-        
-
-        
+ 
       }
+
+      runtimes.push(rt_int);
+          console.log(rt_int);
+         addToWatched(cntr);
     })
 });
 
