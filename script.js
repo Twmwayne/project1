@@ -23,6 +23,7 @@ function timeConvert(n) {
   return rhours.toString() + " hour(s) and " + rminutes.toString() + " minute(s).";
 }
 
+// provides display of time watched and sets to local memory
 function incrementTotal(inp_time){
   var totalStr;
 
@@ -34,13 +35,14 @@ function incrementTotal(inp_time){
   document.getElementById("time-watched-graphic").innerHTML = storedTime;
 }
 
+// Adds movies watched from user input
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   movieAdd = searchInput.value.trim();
   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/search/multi?api_key=" + apiKey + "&language=en-US&query=" + movieAdd + "&include_adult=false"
 
-  // Perfoming an AJAX GET request to our queryURL
+  // Perfoming an AJAX GET request to OMDB for the title and runtime of the movie
   $.ajax({
     url: queryOMDB,
     method: "GET"
@@ -53,6 +55,7 @@ searchButton.addEventListener("click", function (event) {
       var rt_int = 0;
       names.push(responseOMDB.Title)
 
+      // gets the runtime of movies and puts string into array
       st1 = tm;
       var pos = st1.indexOf(" ");
 
@@ -63,6 +66,7 @@ searchButton.addEventListener("click", function (event) {
 
       incrementTotal(rt_int);
 
+      // API call to TMDB for movie poster images
       if (quickAdd === "movie") {
 
         $.ajax({
@@ -80,7 +84,7 @@ searchButton.addEventListener("click", function (event) {
               `)
           })
       }
-
+// API call to TMDB for series poster images
       if (quickAdd === "series") {
 
         $.ajax({
@@ -102,7 +106,7 @@ searchButton.addEventListener("click", function (event) {
     })
 });
 
-
+// Ensures that when page loads the app history is all loaded onto the page
 window.addEventListener("load", function(event){
   var storedMovies = JSON.parse(localStorage.getItem("movies"))
   if(storedMovies !== null){
@@ -128,13 +132,4 @@ window.addEventListener("load", function(event){
   document.getElementById("time-watched-graphic").innerHTML = savedTime;
 })
 
-//Array for next ten list (with movie posters, use bootstrap carousel)
-// $('.carousel').carousel({
-//   interval: 2000
-// })
-//Dashboard list
 
-//IMDB top 100
-//Rotten tomatoes (OMDB)
-//Longest queued. Function to grab the oldest entries in local storage
-//Kid friendly. IMDB kids movie list
