@@ -1,19 +1,46 @@
 body {
     background-color: black;
+    
 }
-#dashboard-row{
+
+.entertainment-border {
+    border-style: groove;
+    border-color: lightskyblue !important;
+    padding-top: 3%;
+    background: transparent;
+}
+#dashboard-row {
     border-color: darkgreen !important;
     border-width: 5px !important;
-    height: 400px;
-    width: 1200px;
+    text-align: center;
+    height: 300px;
+    width: 1150px;
+    border-style: dotted !important;
 }
 
 .card {
-    background:transparent;
-    color: darkgray;
+    background: transparent;
+    color: lightgrey;
 }
 
 .list-group-item {
     background: transparent;
-    color:darkgray;
+    color:lightgrey;
 }
+
+#time-watched-graphic {
+    padding-top: 7%;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+}
+
+#section-titles {
+    padding-top: .5%;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
