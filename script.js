@@ -1,7 +1,10 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.querySelector("#search-input");
-var unwatchedMovie = document.querySelector("#movies");
+var movieDiv = document.querySelector("#movies");
+var seriesDiv = document.querySelector("#series");
 var apiKey = "77cf51e8d01e26a06a5030f3b856fe9e"
+var watchedMovies = new Array();
+var watchedSeries = new Array();
 
 //global variables to make arrays from movies chosen
 var cntr = 0
@@ -20,35 +23,16 @@ function timeConvert(n) {
   return rhours.toString() + " hour(s) and " + rminutes.toString() + " minute(s).";
 }
 
-function incrementTotal(inp_time)
-{
+function incrementTotal(inp_time){
   var totalStr;
 
   timeTotal += inp_time;
-
   totalStr = timeConvert(timeTotal);
-  document.getElementById("time-watched-graphic").innerHTML = totalStr;
+  
+  localStorage.setItem("savedTime", totalStr)
+  var storedTime = localStorage.getItem("savedTime");
+  document.getElementById("time-watched-graphic").innerHTML = storedTime;
 }
-
-// function addToWatched(index) {
-//   var title = names[index];
-//   console.log(title);
-
-//   if (runningTotal.indexOf(title) == -1) {
-    // var tm = runtimes[index];
-    // console.log(tm);
-    // var movieDiv = $("<div class='movie'>");
-    // var totalStr;
-
-    // $("#movies").prepend(movieDiv);
-  //   runningTotal.push(title);
-  //   timeTotal += tm;
-  //   console.log(timeTotal)
-  //   totalStr = timeConvert(timeTotal);
-  //   document.getElementById("time-watched-graphic").innerHTML = totalStr;
-  //   cntr++;
-  // }
-//}
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -87,6 +71,10 @@ searchButton.addEventListener("click", function (event) {
         })
 
           .then(function (responseTMDB) {
+            var moviePoster = responseTMDB.results[0].poster_path
+            watchedMovies.push(moviePoster);
+            console.log(watchedMovies)
+            localStorage.setItem("movies", JSON.stringify(watchedMovies));
             $(".first-container").prepend(`
               <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
               `)
@@ -101,26 +89,50 @@ searchButton.addEventListener("click", function (event) {
         })
 
           .then(function (responseTMDB) {
+            var seriesPoster = responseTMDB.results[0].poster_path
+            watchedSeries.push(seriesPoster);
+            console.log(watchedSeries)
+            localStorage.setItem("series", JSON.stringify(watchedSeries));
             $(".second-container").prepend(`
                 <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
                 `)
           })
 
       }
-      // runtimes.push(rt_int);
-      //console.log(rt_int);
-      //console.log("bottom counter" + cntr)
-      //addToWatched(cntr);
     })
 });
 
+
+window.addEventListener("load", function(event){
+  var storedMovies = JSON.parse(localStorage.getItem("movies"))
+  if(storedMovies !== null){
+    watchedMovies = storedMovies
+  } 
+  for (var i=0; i < storedMovies.length; i++){
+    $(".first-container").prepend(`
+    <img src="https://image.tmdb.org/t/p/w200${storedMovies[i]}"></img>
+    `)
+  }
+
+  var storedSeries = JSON.parse(localStorage.getItem("series"))
+  if(storedSeries !== null){
+    watchedSeries = storedSeries
+  } 
+  for (var i=0; i < storedSeries.length; i++){
+    $(".second-container").prepend(`
+    <img src="https://image.tmdb.org/t/p/w200${storedSeries[i]}"></img>
+    `)
+  }
+
+  var savedTime = localStorage.getItem('savedTime');
+  document.getElementById("time-watched-graphic").innerHTML = savedTime;
+})
 
 //Array for next ten list (with movie posters, use bootstrap carousel)
 // $('.carousel').carousel({
 //   interval: 2000
 // })
 //Dashboard list
-//Time watched clock. Convert to hours/days.
 
 //IMDB top 100
 //Rotten tomatoes (OMDB)
