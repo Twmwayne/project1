@@ -1,91 +1,138 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.querySelector("#search-input");
-var unwatchedMovie = document.querySelector("#movies-unwatched");
+var movieDiv = document.querySelector("#movies");
+var seriesDiv = document.querySelector("#series");
 var apiKey = "77cf51e8d01e26a06a5030f3b856fe9e"
+var watchedMovies = new Array();
+var watchedSeries = new Array();
+
+//global variables to make arrays from movies chosen
+var cntr = 0
+var names = new Array();
+// var runtimes = new Array();
+var runningTotal = new Array();
+var timeTotal = 0;
+
+//function to convert minutes to hours, minutes.
+function timeConvert(n) {
+  var num = n;
+  var hours = (num / 60);
+  var rhours = Math.floor(hours);
+  var minutes = (hours - rhours) * 60;
+  var rminutes = Math.round(minutes);
+  return rhours.toString() + " hour(s) and " + rminutes.toString() + " minute(s).";
+}
+
+function incrementTotal(inp_time){
+  var totalStr;
+
+  timeTotal += inp_time;
+  totalStr = timeConvert(timeTotal);
+  
+  localStorage.setItem("savedTime", totalStr)
+  var storedTime = localStorage.getItem("savedTime");
+  document.getElementById("time-watched-graphic").innerHTML = storedTime;
+}
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   movieAdd = searchInput.value.trim();
-  console.log(movieAdd);
   var queryOMDB = "https://www.omdbapi.com/?t=" + movieAdd + "&apikey=10e7754b";
   var queryTMDB = "https://api.themoviedb.org/3/search/multi?api_key=" + apiKey + "&language=en-US&query=" + movieAdd + "&include_adult=false"
 
-  // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
-
-// Perfoming an AJAX GET request to our queryURL
+  // Perfoming an AJAX GET request to our queryURL
   $.ajax({
     url: queryOMDB,
     method: "GET"
+
   })
     .then(function (responseOMDB) {
-      console.log(responseOMDB);
       var quickAdd = responseOMDB.Type;
+      var tm = responseOMDB.Runtime;
+      var st1 = "test";
+      var rt_int = 0;
+      names.push(responseOMDB.Title)
 
-      if (quickAdd === "movie") {
-        var newMovie = document.createElement('row');
-        //no element called row - can assign a class of row - it would need to be in a table (do we want to create a table)
-        // newMovie.setAttribute("class", "list-group-item");
-        newMovie.setAttribute("id", "new-movie-row")
-        newMovie.textContent = responseOMDB.Title;
-        unwatchedMovie.appendChild(newMovie);
+      st1 = tm;
+      var pos = st1.indexOf(" ");
+
+      if (pos > -1) {
+        st1 = st1.substr(0, pos);
+        rt_int = parseInt(st1);
       }
 
-// we need to add IF statement for Series 
+      incrementTotal(rt_int);
 
-      $.ajax({
-        url: queryTMDB,
-        method: "GET"
-      })
+      if (quickAdd === "movie") {
 
-        .then(function (responseTMDB) {
-          console.log(responseTMDB);
-          $(".first-container").prepend(`
-          <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
-          `)
-
-          // var moviePosterDiv = document.createElement('col');
-          // newMovie.appendChild(moviePosterDiv);
-          // var moviePoster = document.createElement('img');
-          // var posterUrl = responseTMDB.results[0].poster_path;
-
-          // moviePoster.setAttribute("src", "https://image.tmdb.org/t/p/w200" + posterUrl);
-          // console.log(responseTMDB.results[0].poster_path)
-          // newMovie.appendChild(moviePosterDiv);
-          // moviePosterDiv.appendChild(moviePoster);
+        $.ajax({
+          url: queryTMDB,
+          method: "GET"
         })
-        // need to get the image to append to the row/ (want the img, Title, Rating, and Rotten Tomato Score)  
 
-})
+          .then(function (responseTMDB) {
+            var moviePoster = responseTMDB.results[0].poster_path
+            watchedMovies.push(moviePoster);
+            console.log(watchedMovies)
+            localStorage.setItem("movies", JSON.stringify(watchedMovies));
+            $(".first-container").prepend(`
+              <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
+              `)
+          })
+      }
+
+      if (quickAdd === "series") {
+
+        $.ajax({
+          url: queryTMDB,
+          method: "GET"
+        })
+
+          .then(function (responseTMDB) {
+            var seriesPoster = responseTMDB.results[0].poster_path
+            watchedSeries.push(seriesPoster);
+            console.log(watchedSeries)
+            localStorage.setItem("series", JSON.stringify(watchedSeries));
+            $(".second-container").prepend(`
+                <img src="https://image.tmdb.org/t/p/w200${responseTMDB.results[0].poster_path}"></img>
+                `)
+          })
+
+      }
+    })
 });
 
+
+window.addEventListener("load", function(event){
+  var storedMovies = JSON.parse(localStorage.getItem("movies"))
+  if(storedMovies !== null){
+    watchedMovies = storedMovies
+  } 
+  for (var i=0; i < storedMovies.length; i++){
+    $(".first-container").prepend(`
+    <img src="https://image.tmdb.org/t/p/w200${storedMovies[i]}"></img>
+    `)
+  }
+
+  var storedSeries = JSON.parse(localStorage.getItem("series"))
+  if(storedSeries !== null){
+    watchedSeries = storedSeries
+  } 
+  for (var i=0; i < storedSeries.length; i++){
+    $(".second-container").prepend(`
+    <img src="https://image.tmdb.org/t/p/w200${storedSeries[i]}"></img>
+    `)
+  }
+
+  var savedTime = localStorage.getItem('savedTime');
+  document.getElementById("time-watched-graphic").innerHTML = savedTime;
+})
 
 //Array for next ten list (with movie posters, use bootstrap carousel)
 // $('.carousel').carousel({
 //   interval: 2000
 // })
 //Dashboard list
-//Time watched clock. Convert to hours/days.
-
-// Number.prototype.padDigit = function () {
-//   return (this < 10) ? '0' + this : this;
-// }
-
-// $("#addTimes").on('click', function () {
-// var t1 = "00:00";
-// var mins = 0;
-// var hrs = 0;
-//   $('input').each(function () {
-//       t1 = t1.split(':');
-//       var t2 = $(this).val().split(':');
-//       mins = Number(t1[1]) + Number(t2[1]);
-//       minhrs = Math.floor(parseInt(mins / 60));
-//       hrs = Number(t1[0]) + Number(t2[0]) + minhrs;
-//       mins = mins % 60;
-//       t1 = hrs.padDigit() + ':' + mins.padDigit()
-
-//   });
-//   $('#timeSum').text(t1);
-// });
 
 //IMDB top 100
 //Rotten tomatoes (OMDB)
