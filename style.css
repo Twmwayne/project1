@@ -12,7 +12,7 @@ body {
 .entertainment-border {
     border-style: groove;
     border-color: lightskyblue !important;
-    padding-top: 3%;
+    /* padding-top: 3%; */
     background: transparent;
 }
 #dashboard-row{
@@ -26,7 +26,7 @@ body {
 
 .card {
     background: transparent;
-    color: lightgrey;
+    color: silver;
 }
 
 .list-group-item {
@@ -39,17 +39,17 @@ body {
     font-size: 50px;
     color: #ffffff;
     text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
+    /* position: absolute; */
+    /* left: 50%;
+    top: 30%; */
+    /* transform: translate(-50%, -50%); */
     color: #daf6ff;
     text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
 }
 
 #section-titles {
     padding-top: .5%;
-    color: whitesmoke;
+    color: silver;
     text-align: center;
     font-size: 20px;
     font-weight: bold;

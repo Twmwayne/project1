@@ -1,8 +1,9 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.querySelector("#search-input");
+var trendingCard = document.querySelector("#trending-card");
 var movieDiv = document.querySelector("#movies");
 var seriesDiv = document.querySelector("#series");
-var apiKey = "77cf51e8d01e26a06a5030f3b856fe9e"
+var apiKey = "77cf51e8d01e26a06a5030f3b856fe9e";
 var watchedMovies = new Array();
 var watchedSeries = new Array();
 
@@ -24,16 +25,38 @@ function timeConvert(n) {
 }
 
 // provides display of time watched and sets to local memory
-function incrementTotal(inp_time){
+function incrementTotal(inp_time) {
   var totalStr;
 
   timeTotal += inp_time;
   totalStr = timeConvert(timeTotal);
-  
+
   localStorage.setItem("savedTime", totalStr)
   var storedTime = localStorage.getItem("savedTime");
   document.getElementById("time-watched-graphic").innerHTML = storedTime;
 }
+
+var tmdbTrending = "https://api.themoviedb.org/3/trending/movie/week?api_key=77cf51e8d01e26a06a5030f3b856fe9e";
+
+$.ajax({
+  url: tmdbTrending,
+  method: "GET"
+}).then(function (trendingResponse) {
+  console.log(trendingResponse);
+    var trendingArray = new Array();
+    
+    for (i = 0; i <= 9; i++) {
+      var trendingList = trendingResponse.results[i].title;
+    trendingArray.push(trendingList);
+    console.log(trendingList);
+    var trendingRow = document.createElement('p');
+    trendingRow.setAttribute("class", "card-text p-0 m-0")
+    trendingRow.textContent = trendingArray[i];
+    trendingCard.append(trendingRow);
+    };
+
+});
+  
 
 // Adds movies watched from user input
 searchButton.addEventListener("click", function (event) {
@@ -84,7 +107,7 @@ searchButton.addEventListener("click", function (event) {
               `)
           })
       }
-// API call to TMDB for series poster images
+      // API call to TMDB for series poster images
       if (quickAdd === "series") {
 
         $.ajax({
@@ -107,22 +130,22 @@ searchButton.addEventListener("click", function (event) {
 });
 
 // Ensures that when page loads the app history is all loaded onto the page
-window.addEventListener("load", function(event){
+window.addEventListener("load", function (event) {
   var storedMovies = JSON.parse(localStorage.getItem("movies"))
-  if(storedMovies !== null){
+  if (storedMovies !== null) {
     watchedMovies = storedMovies
-  } 
-  for (var i=0; i < storedMovies.length; i++){
+  }
+  for (var i = 0; i < storedMovies.length; i++) {
     $(".first-container").prepend(`
     <img src="https://image.tmdb.org/t/p/w200${storedMovies[i]}"></img>
     `)
   }
 
   var storedSeries = JSON.parse(localStorage.getItem("series"))
-  if(storedSeries !== null){
+  if (storedSeries !== null) {
     watchedSeries = storedSeries
-  } 
-  for (var i=0; i < storedSeries.length; i++){
+  }
+  for (var i = 0; i < storedSeries.length; i++) {
     $(".second-container").prepend(`
     <img src="https://image.tmdb.org/t/p/w200${storedSeries[i]}"></img>
     `)
