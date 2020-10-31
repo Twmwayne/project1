@@ -1,8 +1,6 @@
 body {
     background-color: black;
     
-<<<<<<< HEAD
-=======
 }
 
 #dashboard-row {
@@ -16,7 +14,6 @@ body {
     border-color: lightskyblue !important;
     padding-top: 3%;
     background: transparent;
->>>>>>> dc2248b6856597a82519edb607ce0e6e77737884
 }
 
 .entertainment-border {
