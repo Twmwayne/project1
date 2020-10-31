@@ -1,6 +1,22 @@
 body {
     background-color: black;
     
+<<<<<<< HEAD
+=======
+}
+
+#dashboard-row {
+    background: #0f3854;
+    background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+    background-size: 100%;
+}
+
+.entertainment-border {
+    border-style: groove;
+    border-color: lightskyblue !important;
+    padding-top: 3%;
+    background: transparent;
+>>>>>>> dc2248b6856597a82519edb607ce0e6e77737884
 }
 
 .entertainment-border {
@@ -29,11 +45,16 @@ body {
 }
 
 #time-watched-graphic {
-    padding-top: 7%;
-    color: whitesmoke;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 50px;
+    color: #ffffff;
     text-align: center;
-    font-size: 70px;
-    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    transform: translate(-50%, -50%);
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
 }
 
 #section-titles {
